@@ -1,28 +1,21 @@
 # MCU name
-MCU = atmega32u4
+MCU = RP2040
 
 # Bootloader selection
-BOOTLOADER = atmel-dfu
+BOOTLOADER = rp2040
 
-# Build Options
-#   change yes to no to disable
-#
+# Ignore some warnings during the build, likely to be fixed before RP2040 PR is merged
+ALLOW_WARNINGS = yes
+
+# LTO must be disabled for RP2040 builds
+LTO_ENABLE = no
+
 SPLIT_KEYBOARD = yes
 SWAP_HANDS_ENABLE = yes
 
-OLED_ENABLE = yes
-OLED_DRIVER = SSD1306
-ENCODER_ENABLE = yes
-
-#HAPTIC FEEDBACK
-HAPTIC_DRIVER = DRV2605L
-
-#PER KEY RGB
-BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
-RGBLIGHT_ENABLE = no        # Enable keyboard RGB underglow
-RGB_MATRIX_ENABLE = no      # Enable keyboard RGB matrix (do not use together with RGBLIGHT_ENABLE)
-RGB_MATRIX_DRIVER = WS2812  # RGB matrix driver support
-RGB_MATRIX_SUPPORTED = yes
+# PIO serial/WS2812 drivers must be used on RP2040
+SERIAL_DRIVER = vendor
+WS2812_DRIVER = vendor
 
 #SPACE SAVING
 EXTRAKEY_ENABLE = no
