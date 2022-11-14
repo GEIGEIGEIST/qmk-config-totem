@@ -19,6 +19,6 @@ TOTEM is 38 keys column-staggered split keyboard running [QMK](https://docs.qmk.
 ## HOW TO USE
 
 Place the totem folder from this repository in the keyboards folder of your qmk installation.\
-Than you can use this command in QMK MSYS
+Than use this command in QMK MSYS to create the firmware
 
 `qmk compile -kb totem -km default`
