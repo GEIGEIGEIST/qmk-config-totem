@@ -20,12 +20,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "config_common.h"
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID       0x3A3C
+/*#define VENDOR_ID       0x3A3C
 #define PRODUCT_ID      0x0002
 #define DEVICE_VER      0x0001
 #define MANUFACTURER    GEIST
 #define PRODUCT         TOTEM
-
+*/
 
 /* key matrix size */
 // Rows are doubled-up
@@ -34,11 +34,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 // wiring of each half
-#define MATRIX_ROW_PINS { GP26, GP27, GP28, PP29 }
+#define MATRIX_ROW_PINS { GP26, GP27, GP28, GP29 }
 #define MATRIX_COL_PINS { GP6, GP7, GP3, GP4, GP2 }
 #define DIODE_DIRECTION COL2ROW
-
-#define UNUSED_PINS
 
 
 //#define NO_ACTION_MACRO

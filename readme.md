@@ -25,3 +25,5 @@ Place the totem folder from this repository in the keyboards folder of your qmk 
 Than use this command in QMK MSYS to create the firmware
 
 `qmk compile -kb totem -km default`
+
+See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) for more information. If you never used QMK, you can start with the [Newbs Guide](https://docs.qmk.fm/#/newbs).

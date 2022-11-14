@@ -5,9 +5,9 @@
                                               ▀▀▀   █   ▀▀▀   █   ▀▀▀   ▀   ▀▀▀
                                                     █      ▄▄▄█▄▄▄    █   █  
                                                     ▀      █  █  █     █▄█
-                                                  ▀▀▀▀▀    █  █  █      ▀   ┌─┐┌─╴╷┌──┬─
-                                                           ▀  ▀  ▀          │ ┐├─╴│└─┐│
-                                                                            └─┘└─╴╵╶─┘╵                                                          
+                                                  ▀▀▀▀▀    █  █  █      ▀   
+                                                           ▀  ▀  ▀  D E F A U L T  
+                                                                                                                                  
 ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 */
 
@@ -25,8 +25,8 @@
 // └─────────────────────────────────────────────────┘ 
 
 enum totem_layers {
-    _COLEMAK,
     _QWERTY,
+    _COLEMAK,
     _LOWER,
     _RAISE,
     _ADJUST,
@@ -43,8 +43,6 @@ enum custom_keycodes {
     RAISE,
     ADJUST,
     OS_SWAP,
-    WMAIL,
-    GIPHY,
     MAKE_H,
     SNAP
 };
@@ -53,46 +51,41 @@ enum custom_keycodes {
 // │ d e f i n e   m a c r o n a m e s               │
 // └─────────────────────────────────────────────────┘
 
-// LEFT HAND HOME ROW MODS ├───────────────────────────────────┐
+// LEFT HAND HOME ROW MODS QWERTY ├──────────────────┐
+
+#define GUI_A MT(MOD_LGUI, KC_A)
+#define ALT_S MT(MOD_LALT, KC_S)
+#define CTL_D MT(MOD_LCTL, KC_D)
+#define SHT_F MT(MOD_LSFT, KC_F)
+
+// RIGHT HAND HOME ROW MODS QWERTY ├─────────────────┐
+
+#define SHT_J MT(MOD_RSFT, KC_J)
+#define CTL_K MT(MOD_LCTL, KC_K)
+#define ALT_L MT(MOD_LALT, KC_L)
+#define GUI_S MT(MOD_LGUI, KC_SCLN)
+
+
+// LEFT HAND HOME ROW MODS COLEMAK ├─────────────────┐
 
 #define GUI_A MT(MOD_LGUI, KC_A)
 #define ALT_R MT(MOD_LALT, KC_R)
 #define CTL_S MT(MOD_LCTL, KC_S)
 #define SHT_T MT(MOD_LSFT, KC_T)
 
-// RIGHT HAND HOME ROW MODS ├───────────────────────────────────┐
+// RIGHT HAND HOME ROW MODS COLEMAK ├────────────────┐
 
 #define SHT_N MT(MOD_RSFT, KC_N)
 #define CTL_E MT(MOD_LCTL, KC_E)
 #define ALT_I MT(MOD_LALT, KC_I)
 #define GUI_O MT(MOD_LGUI, KC_O)
 
+
+
+
 #define LOWER LT(_LOWER, KC_TAB)
 #define RAISE LT(_RAISE, KC_ESC)
 #define ADJUST MO(_ADJUST)
-
-
-// ┌─────────────────────────────────────────────────┐
-// │ d e f i n e   c o m b o s                       │
-// └─────────────────────────────────────────────────┘
-
-const uint16_t PROGMEM esc_combo[] = {KC_TAB, KC_Q, COMBO_END};
-combo_t key_combos[COMBO_COUNT] = {
-    COMBO(esc_combo, KC_ESC)
-};
-
-
-// ┌─────────────────────────────────────────────────┐
-// │ d e f i n e   k e y   o v e r r i d e s         │
-// └─────────────────────────────────────────────────┘
-
-const key_override_t sve_key_override = ko_make_basic(MOD_MASK_GUI, KC_S, C(KC_S));
-
-// This globally defines all key overrides to be used ├───────────┐
-const key_override_t **key_overrides = (const key_override_t *[]){
-  &sve_key_override,
-  NULL // Null terminate the array of overrides!
-};
 
 
 // ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -102,30 +95,7 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-/*
-   ┌─────────────────────────────────────────────────┐
-   │ c o l e m a k                                   │      ╭╮╭╮╭╮╭╮
-   └─────────────────────────────────────────────────┘      │╰╯╰╯╰╯│
-             ┌─────────┬─────────┬─────────┬─────────┬──────╨──┐┌──╨──────┬─────────┬─────────┬─────────┬─────────┐
-     ╌┄┈┈───═╡    Q    │    W    │    F    │    P    │    G    ││    J    │    L    │    U    │    Y    │    ;    │   
-             ├─────────┼─────────┼─────────┼─────────┼─────────┤├─────────┼─────────┼─────────┼─────────┼─────────┤
-             │    A    │    R    │    S    │    T    │    D    ││    H    │    N    │    E    │    I    │    O    │    
-   ┌─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┐
-   │    Q    │    Z    │    X    │    C    │    V    │    B    ││    K    │    M    │    ,    │    .    │    /    │    \    │
-   └─────────┴─────────┴─────────┼─────────┼─────────┼─────────┤├─────────┼─────────┼─────────┼─────────┴─────────┴─────────┘
-                                 │   DEL   │  LOWER  │  SPACE  ││  ENTER  │  RAISE  │  BSPC   │  
-                                 └─────────┴─────────┴─────────┘└─────────┴─────────┴─────────┘*/ 
-
-   [_COLEMAK] = LAYOUT(
- //╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷
-              KC_Q,     KC_W,     KC_F,     KC_P,     KC_G,      KC_J,     KC_L,     KC_U,     KC_Y,     KC_SCLN,  
-              GUI_A,    ALT_R,    CTL_S,    SHT_T,    KC_D,      KC_H,     SHT_N,    CTL_E,    ALT_I,    GUI_O,    
-    KC_Q,     KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,      KC_K,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_BSLS,
-                                  KC_DEL,   LOWER,    KC_SPC,    KC_ENT,   RAISE,    KC_BSPC
- ),
  /*
-   ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
-
    ┌─────────────────────────────────────────────────┐
    │ q w e r t y                                     │      ╭╮╭╮╭╮╭╮
    └─────────────────────────────────────────────────┘      │╰╯╰╯╰╯│
@@ -134,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              ├─────────┼─────────┼─────────┼─────────┼─────────┤├─────────┼─────────┼─────────┼─────────┼─────────┤
              │    A    │    S    │    D    │    F    │    G    ││    H    │    J    │    K    │    L    │    ;    │    
    ┌─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┐
-   │  SHIFT  │    Z    │    X    │    C    │    V    │    B    ││    N    │    M    │    ,    │    .    │    /    │    \    │
+   │    Q    │    Z    │    X    │    C    │    V    │    B    ││    N    │    M    │    ,    │    .    │    /    │    P    │
    └─────────┴─────────┴─────────┼─────────┼─────────┼─────────┤├─────────┼─────────┼─────────┼─────────┴─────────┴─────────┘
                                  │  CTRL   │  LOWER  │  SPACE  ││  ENTER  │  RAISE  │  BSPC   │  
                                  └─────────┴─────────┴─────────┘└─────────┴─────────┴─────────┘*/ 
@@ -142,10 +112,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    [_QWERTY] = LAYOUT(
  //╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷
               KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,      KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,  
-              GUI_A,    ALT_R,    CTL_S,    SHT_T,    KC_D,      KC_H,     SHT_N,    CTL_E,    ALT_I,    GUI_O,    
-    KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,      KC_K,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_BSLS,
-                                  KC_LCTL,  LOWER,    KC_SPC,    KC_ENT,   RAISE,    KC_BSPC
+              GUI_A,    ALT_S,    CTL_D,    SHT_F,    KC_G,      KC_H,     SHT_J,    CTL_K,    ALT_L,    GUI_S,    
+    KC_Q,     KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,      KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_P,
+                                  KC_DEL,   LOWER,    KC_SPC,    KC_ENT,   RAISE,    KC_BSPC
  ),
+
+/*
+
+   ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+   ┌─────────────────────────────────────────────────┐
+   │ c o l e m a k                                   │      ╭╮╭╮╭╮╭╮
+   └─────────────────────────────────────────────────┘      │╰╯╰╯╰╯│
+             ┌─────────┬─────────┬─────────┬─────────┬──────╨──┐┌──╨──────┬─────────┬─────────┬─────────┬─────────┐
+     ╌┄┈┈───═╡    Q    │    W    │    F    │    P    │    G    ││    J    │    L    │    U    │    Y    │    ;    │   
+             ├─────────┼─────────┼─────────┼─────────┼─────────┤├─────────┼─────────┼─────────┼─────────┼─────────┤
+             │    A    │    R    │    S    │    T    │    D    ││    H    │    N    │    E    │    I    │    O    │    
+   ┌─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┐
+   │    Q    │    Z    │    X    │    C    │    V    │    B    ││    K    │    M    │    ,    │    .    │    /    │    ;    │
+   └─────────┴─────────┴─────────┼─────────┼─────────┼─────────┤├─────────┼─────────┼─────────┼─────────┴─────────┴─────────┘
+                                 │   DEL   │  LOWER  │  SPACE  ││  ENTER  │  RAISE  │  BSPC   │  
+                                 └─────────┴─────────┴─────────┘└─────────┴─────────┴─────────┘*/ 
+
+   [_COLEMAK] = LAYOUT(
+ //╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷
+              KC_Q,     KC_W,     KC_F,     KC_P,     KC_G,      KC_J,     KC_L,     KC_U,     KC_Y,     KC_SCLN,  
+              GUI_A,    ALT_R,    CTL_S,    SHT_T,    KC_D,      KC_H,     SHT_N,    CTL_E,    ALT_I,    GUI_O,  
+    KC_Q,     KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,      KC_K,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_SCLN,
+                                  KC_DEL,   LOWER,    KC_SPC,    KC_ENT,   RAISE,    KC_BSPC
+ ),
+
  /*
    ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
    
@@ -287,7 +283,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         case MAKE_H:
           if (record->event.pressed) {
-            SEND_STRING ("qmk compile -kb totem -km geist");
+            SEND_STRING ("qmk compile -kb totem -km default");
             tap_code(KC_ENTER); 
           } 
           break;
@@ -295,24 +291,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // ┌─────────────────────────────────────────────────┐
 // │ p r o d u c t i v i t y                         │
 // └─────────────────────────────────────────────────┘
-
-      case WMAIL:
-          if (record->event.pressed) {
-            SEND_STRING ("igit.igit@web.de");
-          } 
-          break;
-
-      case GMAIL:
-          if (record->event.pressed) {
-            SEND_STRING ("igit@gmx.de");
-          } 
-          break;
-
-      case GIPHY:
-          if (record->event.pressed) {
-            SEND_STRING ("@gif ");
-          } 
-          break;
 
       case SNAP:
           if (record->event.pressed) {
