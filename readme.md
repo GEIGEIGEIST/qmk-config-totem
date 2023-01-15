@@ -12,7 +12,7 @@
 [Here](https://github.com/GEIGEIGEIST/totem) you can find the hardware files and build guide.\
 [Here](https://github.com/GEIGEIGEIST/zmk-config-totem) you can find the ZMK config for the TOTEM.
 
-TOTEM is 38 keys column-staggered split keyboard running [QMK](https://docs.qmk.fm/) or [ZMK](https://zmk.dev/). It's meant to be used with a SEEED XIAO RP2040 or BLE.
+TOTEM is a 38 key column-staggered split keyboard running [QMK](https://docs.qmk.fm/) or [ZMK](https://zmk.dev/). It's meant to be used with a SEEED XIAO RP2040 or BLE.
 
 
 ![TOTEM layout](/docs/images/TOTEM_layout.svg)
