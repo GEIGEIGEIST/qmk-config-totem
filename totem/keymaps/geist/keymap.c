@@ -43,7 +43,6 @@ enum custom_keycodes {
     RAISE,
     ADJUST,
     OS_SWAP,
-    WMAIL,
     GIPHY,
     MAKE_H,
     SNAP
@@ -180,7 +179,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              ├─────────┼─────────┼─────────┼─────────┼─────────┤├─────────┼─────────┼─────────┼─────────┼─────────┤
              │    Ä    │    è    │    SZ   │    é    │         ││         │    ¥    │    €    │    £    │    Ö    │
    ┌─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┐
-   │   WEB   │    `    │    ~    │   CUE   │         │         ││         │         │         │ DM REC1 │ DM STOP │ DM PLY1 │
+   │         │    `    │    ~    │   CUE   │         │         ││         │         │         │ DM REC1 │ DM STOP │ DM PLY1 │
    └─────────┴─────────┴─────────┼─────────┼─────────┼─────────┤├─────────┼─────────┼─────────┼─────────┴─────────┴─────────┘
                                  │  GIPHY  │ ADJUST  │    ▼    ││    ▼    │    ▼    │    ▼    │  
                                  └─────────┴─────────┴─────────┘└─────────┴─────────┴─────────┘ */ 
@@ -189,7 +188,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷
               KC_EXLM,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,   KC_CIRC,  KC_AMPR,  RALT(KC_U),RALT(KC_3),KC_BSLS,
             RALT(KC_A),RALT(KC_F),RALT(KC_S),RALT(KC_G),XXXXXXX, XXXXXXX,LSFT(RALT(KC_4)),RALT(KC_5), RALT(KC_4),  RALT(KC_O), 
-    WMAIL,  LSFT(KC_GRV),KC_TILD, RALT(KC_C),XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  DM_REC1,  DM_RSTP,  DM_PLY1, 
+    _______,  LSFT(KC_GRV),KC_TILD, RALT(KC_C),XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  DM_REC1,  DM_RSTP,  DM_PLY1, 
                                   GIPHY,    ADJUST,   _______,   _______,  _______,  _______
  ),
  /*
@@ -295,18 +294,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // ┌─────────────────────────────────────────────────┐
 // │ p r o d u c t i v i t y                         │
 // └─────────────────────────────────────────────────┘
-
-      case WMAIL:
-          if (record->event.pressed) {
-            SEND_STRING ("igit.igit@web.de");
-          } 
-          break;
-
-      case GMAIL:
-          if (record->event.pressed) {
-            SEND_STRING ("igit@gmx.de");
-          } 
-          break;
 
       case GIPHY:
           if (record->event.pressed) {
